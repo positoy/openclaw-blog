@@ -40,7 +40,8 @@ export async function POST(request: NextRequest) {
     const filename = `${generateId()}.${ext}`;
     const contentType = getContentType(filename);
 
-    await uploadFile(filename, buffer, contentType);
+    const key = `blog/images/${filename}`;
+    await uploadFile(key, buffer, contentType);
 
     const url = `/api/images/${filename}`;
 

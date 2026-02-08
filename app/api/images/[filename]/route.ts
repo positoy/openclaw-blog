@@ -18,13 +18,15 @@ export async function GET(request: NextRequest, { params }: Context) {
       return NextResponse.json({ error: "Invalid filename" }, { status: 400 });
     }
 
-    const exists = await fileExists(filename);
+    const key = `blog/images/${filename}`;
+
+    const exists = await fileExists(key);
     if (!exists) {
       return NextResponse.json({ error: "File not found" }, { status: 404 });
     }
 
     // Redirect to presigned URL — bucket egress is free on Railway
-    const presignedUrl = await getPresignedUrl(filename, 86400); // 24 hours
+    const presignedUrl = await getPresignedUrl(key, 86400); // 24 hours
 
     return NextResponse.redirect(presignedUrl, 302);
   } catch (error) {
