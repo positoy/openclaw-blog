@@ -1,17 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs/promises";
-import path from "path";
 import { generateId } from "@/lib/ulid";
 import { isAuthenticated } from "@/lib/auth";
+import { uploadFile } from "@/lib/storage";
 
-const VOLUME_PATH = process.env.VOLUME_PATH || "./public/uploads";
-
-// Ensure directory exists
-async function ensureDir() {
-  try {
-    await fs.access(VOLUME_PATH);
-  } catch {
-    await fs.mkdir(VOLUME_PATH, { recursive: true });
+function getContentType(filename: string): string {
+  const ext = filename.split(".").pop()?.toLowerCase();
+  switch (ext) {
+    case "png":
+      return "image/png";
+    case "jpg":
+    case "jpeg":
+      return "image/jpeg";
+    case "gif":
+      return "image/gif";
+    case "webp":
+      return "image/webp";
+    case "svg":
+      return "image/svg+xml";
+    default:
+      return "application/octet-stream";
   }
 }
 
@@ -28,17 +35,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
     }
 
-    await ensureDir();
-
     const buffer = Buffer.from(await file.arrayBuffer());
     const ext = file.name.split(".").pop() || "bin";
     const filename = `${generateId()}.${ext}`;
-    const filePath = path.join(VOLUME_PATH, filename);
+    const contentType = getContentType(filename);
 
-    await fs.writeFile(filePath, buffer);
+    await uploadFile(filename, buffer, contentType);
 
-    // Construct URL
-    // In production, this should differ relative to how it's hosted, but for this API it's the API route
     const url = `/api/images/${filename}`;
 
     return NextResponse.json({ url }, { status: 201 });
