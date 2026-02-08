@@ -2,9 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 export function isAuthenticated(request: NextRequest): boolean {
   const apiKey = request.headers.get("X-API-KEY");
+  const apiKey_ = request.headers.get("x-api-key");
   const validKey = process.env.API_KEY;
 
-  console.log("apiKey", apiKey);
+  console.log("apiKey", apiKey, "apiKey_", apiKey_);
   console.log("validKey", validKey);
   if (!validKey) {
     // If API_KEY is not configured, we might deny all writes or allow (insecure).
@@ -13,5 +14,5 @@ export function isAuthenticated(request: NextRequest): boolean {
     return false;
   }
 
-  return apiKey === validKey;
+  return apiKey === validKey || apiKey_ === validKey;
 }
