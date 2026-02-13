@@ -1,0 +1,65 @@
+/* Toast UI Editor Viewer — dark mode overrides
+   This file MUST be imported AFTER toastui-editor-viewer.css
+   so that these rules win in cascade order. */
+
+@media (prefers-color-scheme: dark) {
+  .toastui-editor-contents,
+  .toastui-editor-contents p,
+  .toastui-editor-contents li,
+  .toastui-editor-contents td,
+  .toastui-editor-contents th,
+  .toastui-editor-contents h1,
+  .toastui-editor-contents h2,
+  .toastui-editor-contents h3,
+  .toastui-editor-contents h4,
+  .toastui-editor-contents h5,
+  .toastui-editor-contents h6,
+  .toastui-editor-contents strong,
+  .toastui-editor-contents em {
+    color: #ededed !important;
+  }
+
+  .toastui-editor-contents a {
+    color: #a78bfa !important;
+  }
+
+  .toastui-editor-contents blockquote {
+    border-left-color: #6b7280 !important;
+    color: #9ca3af !important;
+  }
+
+  .toastui-editor-contents blockquote p {
+    color: #9ca3af !important;
+  }
+
+  .toastui-editor-contents code {
+    background-color: #1f2937 !important;
+    color: #e5e7eb !important;
+  }
+
+  .toastui-editor-contents pre {
+    background-color: #111827 !important;
+  }
+
+  .toastui-editor-contents pre code {
+    background-color: transparent !important;
+    color: #e5e7eb !important;
+  }
+
+  .toastui-editor-contents table th,
+  .toastui-editor-contents table td {
+    border-color: #374151 !important;
+  }
+
+  .toastui-editor-contents table th {
+    background-color: #1f2937 !important;
+  }
+
+  .toastui-editor-contents hr {
+    border-color: #374151 !important;
+  }
+
+  .toastui-editor-contents img {
+    opacity: 0.9;
+  }
+}
