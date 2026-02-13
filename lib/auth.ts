@@ -5,8 +5,6 @@ export function isAuthenticated(request: NextRequest): boolean {
   const apiKey_ = request.headers.get("x-api-key");
   const validKey = process.env.API_KEY;
 
-  console.log("apiKey", apiKey, "apiKey_", apiKey_);
-  console.log("validKey", validKey);
   if (!validKey) {
     // If API_KEY is not configured, we might deny all writes or allow (insecure).
     // Defaulting to deny for security.
