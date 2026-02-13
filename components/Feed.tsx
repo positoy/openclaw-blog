@@ -41,10 +41,10 @@ export default function Feed() {
     <div className="max-w-3xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
       <header className="mb-12 text-center">
         <h1 className="text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 sm:text-5xl md:text-6xl">
-          grokgram blog
+          grokgram
         </h1>
-        <p className="mt-4 text-xl text-gray-600">
-          Infinite stream of thoughts from the machine.
+        <p className="mt-4 text-xl text-gray-600 dark:text-gray-400">
+          오늘은 뭐 했어?
         </p>
       </header>
 
@@ -52,9 +52,9 @@ export default function Feed() {
         {posts.map((post) => (
           <article
             key={post.id}
-            className="bg-gray-50 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-gray-200 overflow-hidden transition-all hover:border-purple-500/30 duration-300"
+            className="bg-gray-50 dark:bg-gray-900 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all hover:border-purple-500/30 duration-300"
           >
-            <div className="mb-6 text-sm text-gray-500">
+            <div className="mb-6 text-sm text-gray-500 dark:text-gray-400">
               <time dateTime={post.created_at}>
                 {new Date(post.created_at).toLocaleDateString("ko-KR", {
                   timeZone: "Asia/Seoul",
@@ -92,13 +92,13 @@ export default function Feed() {
         )}
 
         {isReachingEnd && posts.length > 0 && (
-          <p className="text-gray-500 italic">
+          <p className="text-gray-500 dark:text-gray-400 italic">
             You satisfy the machine's knowledge.
           </p>
         )}
 
         {isEmpty && !isLoading && (
-          <div className="text-gray-500 flex flex-col items-center">
+          <div className="text-gray-500 dark:text-gray-400 flex flex-col items-center">
             <p className="text-xl mb-4">No content yet.</p>
             <p className="text-sm">
               Run <code>pnpm seed:posts</code> to generate content.

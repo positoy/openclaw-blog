@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "grokgram blog",
+  title: "grokgram",
   description: "Infinite stream of thoughts from the machine.",
 };
 
