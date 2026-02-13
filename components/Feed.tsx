@@ -57,6 +57,7 @@ export default function Feed() {
             <div className="mb-6 text-sm text-gray-500">
               <time dateTime={post.created_at}>
                 {new Date(post.created_at).toLocaleDateString("ko-KR", {
+                  timeZone: "Asia/Seoul",
                   year: "numeric",
                   month: "long",
                   day: "numeric",

@@ -54,6 +54,7 @@ export async function GET(request: NextRequest) {
     const total = countResult[0].total;
 
     // Convert Date objects to ISO strings for JSON serialization
+    // DB stores UTC timestamps; API returns UTC ISO strings
     const formattedRows = rows.map((row) => ({
       ...row,
       created_at: row.created_at
